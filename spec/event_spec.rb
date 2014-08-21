@@ -24,7 +24,16 @@ describe Event do
   it 'returns a list of events for the current day' do
     event = Event.create({description: "Get lunch", location: "work", start_date: '21st Aug 2014 12:00:00', end_date: '21st Aug 2014 14:00:00'})
     time = 'today'
-    expect(event.current_events(time)).to eq [event]
+    expect(Event.current_events(time)).to eq [event]
   end
+
+  it 'returns a list of events for the current week' do
+    event1 = Event.create({description: "Get lunch", location: "work", start_date: '21st Sep 2014 12:00:00', end_date: '21st Sep 2014 14:00:00'})
+    event2 = Event.create({description: "Get lunch", location: "work", start_date: '21st Aug 2014 12:00:00', end_date: '21st Aug 2014 14:00:00'})
+    event3 = Event.create({description: "Get lunch", location: "work", start_date: '26th Aug 2014 12:00:00', end_date: '27th Aug 2014 14:00:00'})
+    time = "week"
+    expect(Event.current_events(time)).to eq [event2, event3]
+  end
+
 
 end

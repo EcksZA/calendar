@@ -12,14 +12,17 @@ class Event < ActiveRecord::Base
     new_list.sort_by(&:start_date)
   end
 
-  def current_events time
+  def self.current_events time
     case time
     when 'today'
       new_list = Event.all.reject { |event| event.start_date.to_date != Date.today}
-    # when 'week'
+    when 'week'
+      new_list = Event.all.reject do |event|
+        (event.start_date.to_date < Date.today) || (event.start_date.to_date > (Date.today+6))
+      end
     # when 'month'
     end
-    new_list
+    new_list.sort_by(&:start_date)
   end
 
 end
