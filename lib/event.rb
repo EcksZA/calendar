@@ -20,7 +20,10 @@ class Event < ActiveRecord::Base
       new_list = Event.all.reject do |event|
         (event.start_date.to_date < Date.today) || (event.start_date.to_date > (Date.today+6))
       end
-    # when 'month'
+    when 'month'
+      new_list = Event.all.reject do |event|
+        event.start_date.to_date < Date.today || event.start_date.to_date > Date.today.next_month
+      end
     end
     new_list.sort_by(&:start_date)
   end

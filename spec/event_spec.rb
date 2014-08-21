@@ -35,5 +35,14 @@ describe Event do
     expect(Event.current_events(time)).to eq [event2, event3]
   end
 
+  it 'returns a list of events for the current month' do
+    event1 = Event.create({description: "Get lunch", location: "work", start_date: '20th Sep 2014 12:00:00', end_date: '20th Sep 2014 14:00:00'})
+    event2 = Event.create({description: "Get lunch", location: "work", start_date: '21st Aug 2014 12:00:00', end_date: '21st Aug 2014 14:00:00'})
+    event3 = Event.create({description: "Get lunch", location: "work", start_date: '26th Nov 2014 12:00:00', end_date: '27th Nov 2014 14:00:00'})
+    time = "month"
+    expect(Event.current_events(time)).to eq [event2, event1]
+  end
+
+
 
 end
