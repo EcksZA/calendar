@@ -6,9 +6,10 @@ class Event < ActiveRecord::Base
 
 
   def self.list_order
+    Event.all.reject {|event| event.start_date <= Date.today}
     Event.all.sort_by(&:start_date)
-    # x >= Date.today
-    # Event.where("start_date = ?, x")
-    # end
   end
+
+
 end
+
