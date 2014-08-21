@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe Event do
-  it "allows for the editing of an event" do
-    event_1 = Event.create({:description => "Figure out what I'm doing"})
-    event_1.edit_description("Figure out what's for lunch")
-    expect(event_1.description).to eq "Figure out what's for lunch"
+  it 'validates the presence of an event description' do
+    event1 = Event.create({:description => ""})
+    event2 = Event.create({:description => "Figure out what's for lunch"})
+    expect(event1.save).to eq false
+    expect(event2.save).to eq true
   end
 
 end
