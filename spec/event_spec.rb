@@ -21,11 +21,10 @@ describe Event do
     expect(Event.list_order).to eq [event2]
   end
 
-  # it 'returns a list of events for the current day' do
-  #   event = Event.create({description: "Get lunch", location: "work", start_date: '21st Aug 2014 12:00:00', end_date: '21st Aug 2014 14:00:00'})
-  #   time = 'today'
-  #   event.list_order
-  #   expect(event.current_events(time)).to eq [event]
-  # end
+  it 'returns a list of events for the current day' do
+    event = Event.create({description: "Get lunch", location: "work", start_date: '21st Aug 2014 12:00:00', end_date: '21st Aug 2014 14:00:00'})
+    time = 'today'
+    expect(event.current_events(time)).to eq [event]
+  end
 
 end

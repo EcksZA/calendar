@@ -10,10 +10,17 @@ class Event < ActiveRecord::Base
   def self.list_order
     new_list = Event.all.reject {|event| event.start_date <= Date.today}
     new_list.sort_by(&:start_date)
-    # binding.pry
-    # Event.where("start_date =? ASC")
   end
 
+  def current_events time
+    case time
+    when 'today'
+      new_list = Event.all.reject { |event| event.start_date.to_date != Date.today}
+    # when 'week'
+    # when 'month'
+    end
+    new_list
+  end
 
 end
 
