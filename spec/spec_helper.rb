@@ -1,6 +1,7 @@
 require 'active_record'
 require 'pg'
 require 'rspec'
+require 'shoulda-matchers'
 
 require 'event'
 
