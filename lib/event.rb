@@ -1,3 +1,5 @@
+require 'pry'
+
 class Event < ActiveRecord::Base
   validates :description, presence: true
   validates :location, presence: true
@@ -6,8 +8,10 @@ class Event < ActiveRecord::Base
 
 
   def self.list_order
-    Event.all.reject {|event| event.start_date <= Date.today}
-    Event.all.sort_by(&:start_date)
+    new_list = Event.all.reject {|event| event.start_date <= Date.today}
+    new_list.sort_by(&:start_date)
+    # binding.pry
+    # Event.where("start_date =? ASC")
   end
 
 
